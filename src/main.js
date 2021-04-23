@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import actions from './shared/actions'
 
 Vue.config.productionTip = false
 
@@ -11,7 +12,8 @@ Vue.config.productionTip = false
 
 let instance = null
 
-function render(){
+function render(props){
+  actions.setActions(props.actions)
   instance = new Vue({
     router,
     render: h => h(App)

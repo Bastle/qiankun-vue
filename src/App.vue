@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div>{{this.date}}</div>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,6 +9,23 @@
   </div>
 </template>
 
+<script>
+import actions from './shared/actions'
+export default {
+  data () {
+    return {
+      date: 'loading'
+    }
+  },
+  mounted(){
+    console.log('----- actions ------>',actions)
+    actions.offGlobalStateChange()
+    actions.onGlobalStateChange((state, prevState) => {
+      this.date = state.date
+    })
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
